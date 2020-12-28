@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Shamrock OTA Updates</string>
+    <string name="app_name_package">dev.atahabaki.shamrock_ota</string>
+    <string name="checking_updates">Checking Updates…</string>
+    <string name="downloading">Downloading the Update…</string>
+    <string name="install_ask">Do you want to install it, now?</string>
+    <string name="reboot_recovery">Reboot into Recovery Mode</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="play_store_package_details_uri">https://play.google.com/store/apps/details?id=</string>
+    <string name="adm_package_name">com.dv.adm</string>
+    <string name="open_play_store_package_name">com.android.vending</string>
 </resources>
