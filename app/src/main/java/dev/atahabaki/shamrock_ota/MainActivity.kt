@@ -11,13 +11,15 @@ import dev.atahabaki.shamrock_ota.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val _logMainCategory: String = "${getString(R.string.app_name_package)}.mainActivity"
+    private lateinit var _logMainCategory: String
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        _logMainCategory = "${getString(R.string.app_name_package)}.mainActivity"
 
         binding.gplayLaunchBtn.setOnClickListener {
             val isInstalledADM = checkADMInstalled()
@@ -27,13 +29,17 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 Log.d(_logMainCategory, "ADM is installed.")
-                launchADMBrowserWithUrl(Uri.parse("uri"))
+                launchADMBrowserWithUrl(Uri.parse("https://github.com/atahabaki/"))
             }
         }
     }
 
     private fun launchADMBrowserWithUrl(uri: Uri) {
-        // TODO(0) make intent to open Web Browser
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = uri
+            setPackage(getString(R.string.adm_package_name))
+        }
+        startActivity(intent)
     }
 
     private fun checkADMInstalled(): Boolean {
