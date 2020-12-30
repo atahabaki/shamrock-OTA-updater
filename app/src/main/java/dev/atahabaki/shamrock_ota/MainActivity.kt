@@ -34,14 +34,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun launchADMBrowserWithUrl(uri: Uri) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = uri
-            setPackage(getString(R.string.adm_package_name))
-        }
-        startActivity(intent)
-    }
-
     private fun checkADMInstalled(): Boolean {
         return isAppInstalled(getString(R.string.adm_package_name), packageManager)
     }
@@ -55,11 +47,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openADMinPlayStore() {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse("${getString(R.string.play_store_package_details_uri)}${getString(R.string.adm_package_name)}")
-            setPackage(getString(R.string.open_play_store_package_name))
-        }
+    private fun launchIntent(uri: Uri, package_name: String) {
+       val intent = Intent(Intent.ACTION_VIEW).apply {
+           data = uri
+           setPackage(package_name)
+       }
         startActivity(intent)
+    }
+
+    private fun launchADMBrowserWithUrl(uri: Uri) {
+        launchIntent(uri,getString(R.string.adm_package_name))
+    }
+
+    private fun openADMinPlayStore() {
+        launchIntent(Uri.parse("${getString(R.string.play_store_package_details_uri)}${getString(R.string.adm_package_name)}"),
+                getString(R.string.open_play_store_package_name))
     }
 }
